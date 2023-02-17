@@ -12,14 +12,14 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        stage('Build') {
+        stage('Build Python Project') {
             steps {
                 sh 'python3 jaldeep_patel.py'
             }
         }
          stage('Jaldeep - Build Docker Image') {
             steps {
-                sh 'docker image build -t myprojecttest:v0.3 .'
+                sh 'docker build -t jaldeeppatel/myprojecttest:v0.3 .'
             }
         }
           stage('Jaldeep - Login to Dockerhub') {
