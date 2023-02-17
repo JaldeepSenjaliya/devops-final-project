@@ -3,9 +3,9 @@ FROM python:3
 # Add the script to dockerfile
 ADD jaldeep_patel.py /
 # Make port 80 available to the world outside this container
-EXPOSE 80
+# EXPOSE 80
 # Add this line to your Dockerfile to install random
-RUN pip install pystrich
+# RUN pip install pystrich
 # To execute the script
 CMD ["python", "./jaldeep_patel.py"]
 
