@@ -8,30 +8,31 @@ pipeline {
         }
         stage('Version') {
             steps {
-                sh 'python --version'
+                sh 'python3 --version'
                 sh 'docker --version'
             }
         }
         stage('Build Python Project') {
             steps {
-                sh 'python jaldeep_patel.py'
+                sh 'python3 jaldeep_patel.py'
             }
         }
          stage('Jaldeep - Build Docker Image') {
             steps {
-                sh 'docker build -t jaldeeppatel/myprojecttest:v0.3 .'
+                sh 'docker build -t jaldeeppatel/myprojecttest:v0.4 .'
             }
         }
           stage('Jaldeep - Login to Dockerhub') {
             steps {
-               withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-               sh 'docker login -u jaldeeppatel -p {dockerhubpwd}'
+                withCredentials([string(credentialsId: 'dockerhubpwd1', variable: 'dockerhubpwd1')]) {
+                sh 'docker login -u jaldeeppatel -p J@L966de!p#'
 }
             }
         }
           stage('Jaldeep - Push image to Dockerhub') {
             steps {
-              sh 'docker push jaldeeppatel/my-test-repository:myprojectimage2'
+                sh 'docker tag jaldeeppatel/myprojecttest:v0.4 jaldeeppatel/my-test-repository:myprojectimage4'
+                sh 'docker push jaldeeppatel/my-test-repository:myprojectimage4'
             }
         }
     }

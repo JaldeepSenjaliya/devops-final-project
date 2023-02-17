@@ -13,5 +13,9 @@ CMD ["python", "./jaldeep_patel.py"]
 
 # sh 'docker build -t jaldeeppatel/myprojecttest:v0.3 .'
 # sh 'docker login'
-# sh 'docker tag myprojecttest:v0.3 jaldeeppatel/my-test-repository:myprojectimage2'
+# sh 'docker tag jaldeeppatel/myprojecttest:v0.4 jaldeeppatel/my-test-repository:myprojectimage4'
 # sh 'docker push jaldeeppatel/my-test-repository:myprojectimage2'
+
+
+# docker tag jaldeeppatel/myprojecttest:v0.4 jaldeeppatel/my-test-repository:myprojectimage4
+# docker push jaldeeppatel/my-test-repository:myprojectimage4
