@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+   agent any
     stages {
         stage('Checkout from Git') {
             steps {
@@ -8,13 +8,13 @@ pipeline {
         }
         stage('Version') {
             steps {
-                sh 'python3 --version'
+                sh 'python --version'
                 sh 'docker --version'
             }
         }
         stage('Build Python Project') {
             steps {
-                sh 'python3 jaldeep_patel.py'
+                sh 'python jaldeep_patel.py'
             }
         }
          stage('Jaldeep - Build Docker Image') {
@@ -24,12 +24,13 @@ pipeline {
         }
           stage('Jaldeep - Login to Dockerhub') {
             steps {
-                sh 'docker login'
+               withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+               sh 'docker login -u jaldeeppatel -p {dockerhubpwd}'
+}
             }
         }
           stage('Jaldeep - Push image to Dockerhub') {
             steps {
-              sh 'docker tag myprojecttest:v0.3 jaldeeppatel/my-test-repository:myprojectimage2'
               sh 'docker push jaldeeppatel/my-test-repository:myprojectimage2'
             }
         }
